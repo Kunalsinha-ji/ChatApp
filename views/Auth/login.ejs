@@ -1,0 +1,45 @@
+<%- include("../partials/header") %>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message === 'invalid_credentials') {
+        alert('Invalid credentials. Please try again.');
+    }
+    if (message === 'email-registered') {
+        alert('email-registered. Please Log in.');
+    }
+    if (message === 'email-registered-login-to-chat') {
+        alert('email-registered. Please Log in to chat.');
+    }
+    if (message === 'No_login_found') {
+        alert('Please Login first');
+    }
+    if (message === 'error') {
+        alert('email-not-registered. Please try again.');
+    }
+</script>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center">Login</h2>
+                    <form action="/" method="POST">
+                        <div class="form-group">
+                            <label for="username">Email</label>
+                            <input type="text" id="username" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                        <a href="/signup">Click here to Sign up</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

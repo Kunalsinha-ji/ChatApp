@@ -1,0 +1,104 @@
+<%- include("./partials/header") %>
+<%- include("./partials/navbar") %>
+
+<style>
+  body {
+    background-color: #eef2f3;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .container {
+    margin-top: 50px;
+    max-width: 800px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .card-header {
+    background-color: #0056b3;
+    color: #ffffff;
+    border-bottom: 2px solid #004494;
+    padding: 25px;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  .list-group {
+    margin: 15px 0;
+  }
+
+  .chat-item {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #333;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .chat-item:hover {
+    background-color: #e1e1e1;
+    transform: translateY(-2px);
+  }
+
+  .chat-email {
+    color: #343a40;
+    font-weight: 600;
+  }
+
+  .chat-preview {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  h2 {
+    margin: 20px 0;
+    color: #0056b3;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .no-chats {
+    text-align: center;
+    color: #888;
+    margin-top: 50px;
+    font-size: 1.2rem;
+  }
+</style>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Chat List
+    </div>
+    <div class="card-body">
+      <div class="list-group">
+        <% if (receiverEmails.length > 0) { %>
+          <% receiverEmails.forEach(email => { %>
+            <a href="/singlechat?email=<%= email %>" class="list-group-item list-group-item-action chat-item">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 chat-email">
+                  <%= email %>
+                </h5>
+              </div>
+            </a>
+          <% }) %>
+        <% } else { %>
+          <div class="no-chats">No chats available. Start a new conversation!</div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./partials/footer") %>

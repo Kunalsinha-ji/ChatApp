@@ -1,0 +1,34 @@
+<%- include("./partials/header") %>
+<%- include("./partials/navbar") %>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message === "No_such_user_found") {
+        alert('No Such user Found. Please try again.');
+    }
+</script>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/home" method="POST">
+                        <div class="form-group">
+                            <label for="username">Enter User's name to chat</label>
+                            <input type="text" id="username" name="usernameoth" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const senderEmail = "<%= senderMail %>";
+
+    socket.emit('join', senderEmail);
+</script>
+<%- include("./partials/footer") %>
